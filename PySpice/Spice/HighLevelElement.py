@@ -197,6 +197,8 @@ class Pulse(VoltageSource):
 
       :attr:`rise_time`
 
+      :attr:`phase`
+
     """
 
     ##############################################
@@ -204,7 +206,7 @@ class Pulse(VoltageSource):
     def __init__(self, name, node_plus, node_minus,
                  initial_value, pulsed_value,
                  pulse_width, period,
-                 delay_time=0, rise_time=0, fall_time=0):
+                 delay_time=0, rise_time=0, fall_time=0, phase=0):
 
         # Fixme: default
         #  rise_time, fall_time = Tstep
@@ -219,7 +221,7 @@ class Pulse(VoltageSource):
         self.fall_time = as_s(fall_time)
         self.pulse_width = as_s(pulse_width)
         self.period = as_s(period) # Fixme: protect by setter?
-
+        self.phase = as_s(phase)
         # # Fixme: to func?
         # # Check parameters
         # found_none = False
@@ -244,7 +246,7 @@ class Pulse(VoltageSource):
         # Fixme: to func?
         return ('PULSE(' +
                 join_list((self.initial_value, self.pulsed_value, self.delay_time,
-                           self.rise_time, self.fall_time, self.pulse_width, self.period)) +
+                           self.rise_time, self.fall_time, self.pulse_width, self.period, self.phase)) +
                 ')')
 
 ####################################################################################################
